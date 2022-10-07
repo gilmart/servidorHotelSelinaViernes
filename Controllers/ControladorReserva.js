@@ -1,15 +1,15 @@
 import { request } from "express"
-
+import {ServicioReserva} from "../services/ServicioReserva.js"
 export class ControladorReserva{
 
     constructor(){}
-    buscarReservas(request, response){
-      let buscar= request.body
-
+    async buscarReservas(request, response){
+     // let buscar= request.body
+      let objetoServicioReservas = new ServicioReserva()
         try {
           response.status(200).json({
             "mensaje":"exito en la consulta",
-            "datos":"aqui van los datos de la busqueda de reservas",
+            "datos": await objetoServicioReservas.buscarReservas(),
             "estado":true  
           })  
         } catch (error) {
@@ -23,13 +23,13 @@ export class ControladorReserva{
         //response.send("estoy buscando reservas desde el controlador")
     }
  
-    buscarReservaPorID(request, response){
-
+    async buscarReservaPorID(request, response){
       let id =request.params.idReserva
+      let objetoServicioHabitacion = new ServicioReserva()
         try {
             response.status(200).json({
               "mensaje":"exito en la consulta " +id,
-              "datos":"aqui van los datos de la busqueda de reservas por id ",
+              "datos": await objetoServicioReserva.buscarReservaPorId(id),
               "estado":true  
             })  
           } catch (error) {
@@ -45,11 +45,12 @@ export class ControladorReserva{
 
     }
 
-    registrarReserva(request, response){
+    async registrarReserva(request, response){
 
       let datosReserva= request.body
-      console.log(datosReserva)
-        try {
+      let objetoServicioReserva = new ServicioReserva()
+      try {
+        await objetoServicioReserva.agregarReservaEnBD(datosReserva)
             response.status(200).json({
               "mensaje":"exito en la consulta" + datosReserva,
               "datos":null,
@@ -65,12 +66,14 @@ export class ControladorReserva{
 
     }
 
-    editarReserva(request, response){
+    async editarReserva(request, response){
       
       let id = request.params.idReserva
       let datosReserva = request.body
-      console.log(id,datosReserva)
-        try {
+
+      let objetoServicioHabitacion=new ServicioReserva()
+      try {
+            await objetoServicioHabitacion.editarReserva(id,datosReserva)
             response.status(200).json({
               "mensaje":"exito en la consulta" + id,
               "datos":"aqui van los editando las reservas"+ datosReserva,

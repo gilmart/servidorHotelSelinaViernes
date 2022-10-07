@@ -1,14 +1,17 @@
+import { ServicioHabitacion } from "../services/ServicioHabitacion.js"
+
 export class ControladorHabitacion{
     constructor(){}
 
-    buscarHabitaciones(request, response){
+   async buscarHabitaciones(request, response){
 
-        let buscarHabitaciones = request.body
+        let objetoServicioHabitaciones = new ServicioHabitacion()
+
+       // let buscarHabitaciones = request.body
         try{
             response.status(200).json({
-                "mensaje":"exito en la consulta" +buscarHabitaciones,
-                "datos":"aqui van los datos de las habitaciones",
-                "estado":true
+                "mensaje":"exito en la consulta",
+                "datos": await objetoServicioHabitaciones.buscarHabitaciones()
             })
         }catch(error){
             response.status(400).json({
@@ -21,14 +24,14 @@ export class ControladorHabitacion{
 
      }
 
-     buscarHabitacionPorID(request, response){
+    async buscarHabitacionPorID(request, response){
+        let id =request.params.idHabitacion // recibo id de la peticion
+        let objetoServicioHabitacion=new ServicioHabitacion()
 
-        let id =request.params.idHabitacion // recibo ide de la peticion
-        
         try{
             response.status(200).json({
                 "mensaje":"exito en la consulta " +id,
-                "datos":"aqui van los datos de buscar las habitaciones por ID",
+                "datos": await objetoServicioHabitacion.buscarHabitacionPorId(id),
                 "estado":true
             })
         }catch(error){
@@ -42,10 +45,14 @@ export class ControladorHabitacion{
 
      }
 
-     registrarHabitacion(request, response){
-
+     async registrarHabitacion(request, response){
+            
         let datosHabitacion= request.body
+        let objetoServicioHabitacion=new ServicioHabitacion()
+
+
         try{
+            await objetoServicioHabitacion.agregarHabitacionEnBD(datosHabitacion)
             response.status(200).json({
                 "mensaje":"exito registrando la habitacion" +datosHabitacion ,
                 "datos":null,
@@ -61,16 +68,19 @@ export class ControladorHabitacion{
 
      }
 
-     editarHabitacion(request, response){
+     async editarHabitacion(request, response){
 
         let id = request.params.idHabitacion
         let datosHabitacion = request.body
-        console.log(id,datosHabitacion)
+
+        let objetoServicioHabitacion=new ServicioHabitacion()
 
         try{
+            await objetoServicioHabitacion.editarHabitacion(id,datosHabitacion) 
+            
             response.status(200).json({
                 "mensaje":"exito en editando la habitacion" +id,
-                "datos":datosHabitacion ,
+                "datos": null,
             })
         }catch(error){
             response.status(400).json({
@@ -85,3 +95,4 @@ export class ControladorHabitacion{
 
 
 }
+

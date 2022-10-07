@@ -10,7 +10,7 @@ export let rutasPersonalizadas=express.Router()
 rutasPersonalizadas.get('/hotelselina/habitaciones',controladorHabitacion.buscarHabitaciones)
 rutasPersonalizadas.get('/hotelselina/habitacion/:idHabitacion',controladorHabitacion.buscarHabitacionPorID)
 rutasPersonalizadas.post('/hotelselina/habitacion', controladorHabitacion.registrarHabitacion)
-rutasPersonalizadas.put('/hotelselina/habitacion', controladorHabitacion.editarHabitacion)
+rutasPersonalizadas.put('/hotelselina/habitacion/:idHabitacion', controladorHabitacion.editarHabitacion)
 
 rutasPersonalizadas.get('/hotelselina/reservas',controladorReserva.buscarReservas)
 rutasPersonalizadas.get('/hotelselina/reserva/:idReserva',controladorReserva.buscarReservaPorID)
