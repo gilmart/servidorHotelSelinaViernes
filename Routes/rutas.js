@@ -16,6 +16,7 @@ rutasPersonalizadas.get('/hotelselina/reservas',controladorReserva.buscarReserva
 rutasPersonalizadas.get('/hotelselina/reserva/:idReserva',controladorReserva.buscarReservaPorID)
 rutasPersonalizadas.post('/hotelselina/reserva',controladorReserva.registrarReserva)
 rutasPersonalizadas.put('/hotelselina/reserva',controladorReserva.editarReserva)
+rutasPersonalizadas.delete('/hotelselina/reserva/:idReserva',controladorReserva.eliminarReserva)
 
 
 

@@ -49,14 +49,28 @@ export class ControladorHabitacion{
             
         let datosHabitacion= request.body
         let objetoServicioHabitacion=new ServicioHabitacion()
-
+        let habitacion = buscarHabitacionPorId(id)
 
         try{
-            await objetoServicioHabitacion.agregarHabitacionEnBD(datosHabitacion)
-            response.status(200).json({
-                "mensaje":"exito registrando la habitacion" +datosHabitacion ,
-                "datos":null,
-            })
+            console.log(datosHabitacion.numeroMaximoPersona)
+            console.log(habitacion)
+            if(datosHabitacion.numeroMaximoPersona<8){
+
+                await objetoServicioHabitacion.agregarHabitacionEnBD(datosHabitacion)
+
+                response.status(200).json({
+                    "mensaje":"exito registrando la habitacion " +datosHabitacion.numeroMaximoPersona ,
+                    "datos":null,
+                })
+            }else{
+                response.status(400).json({
+                    "mensaje":"Numero de personas excedido - " +datosHabitacion.numeroMaximoPersona ,
+                    "datos":null,
+                })
+            }
+
+      
+        
         }catch(error){
             response.status(400).json({
                 "mensaje":"ERROR en la consulta " +error,

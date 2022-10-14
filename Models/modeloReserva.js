@@ -7,6 +7,8 @@ import mongoose from 'mongoose';
 //numerokids:number
 //costoreserva():number
 
+
+
 const Schema = mongoose.Schema; 
 
 const EsquemaReserva = new Schema({
@@ -15,6 +17,8 @@ const EsquemaReserva = new Schema({
         required:true,
         type:String,
     },
+   
+    /*
     fechaEntrada:{
         required:true,
         type:Date
@@ -23,6 +27,7 @@ const EsquemaReserva = new Schema({
         required:true,
         type:Date
     },
+    */
     numeroAdultos:{
         required:true,
         type:Number
