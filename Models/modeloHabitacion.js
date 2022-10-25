@@ -29,3 +29,4 @@ const EsquemaHabitacion = new Schema({
   });
 
   export const modeloHabitacion=mongoose.model('habitaciones', EsquemaHabitacion)
+

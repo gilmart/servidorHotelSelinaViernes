@@ -49,11 +49,11 @@ export class ControladorHabitacion{
             
         let datosHabitacion= request.body
         let objetoServicioHabitacion=new ServicioHabitacion()
-        let habitacion = buscarHabitacionPorId(id)
+      //  let habitacion = buscarHabitacionPorId(id)
 
         try{
             console.log(datosHabitacion.numeroMaximoPersona)
-            console.log(habitacion)
+        //    console.log(habitacion)
             if(datosHabitacion.numeroMaximoPersona<8){
 
                 await objetoServicioHabitacion.agregarHabitacionEnBD(datosHabitacion)
@@ -107,6 +107,27 @@ export class ControladorHabitacion{
 
      }
 
+    async eliminarHabitacion(request, response){
+        let id = request.params.idHabitacion
+        let datosHabitacion = request.body
+
+        let objetoServicioHabitacion=new ServicioHabitacion()
+
+        try{
+            await objetoServicioHabitacion.eliminarHabitacion(id)
+
+            response.status(200).json({
+                "mensaje":"exito en eliminando la habitacion" +id,
+                "datos": null,
+            })
+        }catch(error){
+            response.status(400).json({
+                "mensaje":"ERROR en la consulta " +error,
+                "datos":null,
+                "estado":false
+            })
+        }
+    }
 
 }
 

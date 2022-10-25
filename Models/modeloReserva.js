@@ -18,7 +18,7 @@ const EsquemaReserva = new Schema({
         type:String,
     },
    
-    /*
+    
     fechaEntrada:{
         required:true,
         type:Date
@@ -27,7 +27,7 @@ const EsquemaReserva = new Schema({
         required:true,
         type:Date
     },
-    */
+
     numeroAdultos:{
         required:true,
         type:Number
@@ -36,10 +36,11 @@ const EsquemaReserva = new Schema({
         required:true,
         type:Number
     },
-    costoreserva:{
+    costoReserva:{
         required:true,
         type:Number
     },
+ 
   
 
   });
