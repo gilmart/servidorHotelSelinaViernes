@@ -141,8 +141,8 @@ export class ControladorReserva{
       try {
             await objetoServicioReserva.editarReserva(id,datosReserva)
             response.status(200).json({
-              "mensaje":"exito en la consulta" + id,
-              "datos":"aqui van los editando las reservas"+ datosReserva,
+              "mensaje":"exito en la edicion" + id , datosReserva,
+              "datos":"aqui van los editando las reservas",
               "estado":true  
             })  
           } catch (error) {
@@ -178,3 +178,6 @@ export class ControladorReserva{
 
 
   }
+
+
+  //https://www.geeksforgeeks.org/login-form-using-node-js-and-mongodb/
